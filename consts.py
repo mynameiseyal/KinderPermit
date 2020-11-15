@@ -8,7 +8,3 @@ BLOCKER = "blocker"
 USERNAME = "HIN_USERID"
 PASSWORD = "Ecom_Password"
 LOGIN_BUTTON = "loginButton2"
-
-### CREDENTIALS ###
-username = "5184588"
-password = 'Eyal1982'
