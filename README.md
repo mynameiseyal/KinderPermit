@@ -1,2 +1,2 @@
 # KinderPermit
-Sign a Korona permit for kids
+Sign a Covid-19 permit for kids
