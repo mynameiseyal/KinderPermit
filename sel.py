@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 from pathlib import Path
 from selenium import webdriver
@@ -11,7 +12,7 @@ today = datetime.today().strftime('%d-%m-%Y')
 class Selenium:
     def __init__(self):
         options = Options()
-        # options.add_argument("--headless")  # Runs Chrome in headless mode.
+        options.add_argument("--headless")  # Runs Chrome in headless mode.
         options.add_argument('--no-sandbox')  # Bypass OS security model
         options.add_argument('--disable-gpu')  # applicable to windows os only
         options.add_argument('start-maximized')  #
@@ -33,7 +34,7 @@ class Selenium:
         self.driver.find_element_by_id(USERNAME).send_keys(username)
         self.driver.find_element_by_id(PASSWORD).send_keys(password)
         self.driver.find_element_by_id(LOGIN_BUTTON).click()
-        self.driver.set_page_load_timeout(20)
+        time.sleep(7)
 
     def sign_health_decleration(self):
         # First decleration:
@@ -45,10 +46,12 @@ class Selenium:
         self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
         self.driver.implicitly_wait(2)
         self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
-        self.driver.set_page_load_timeout(20)
+        time.sleep(7)
 
     def save_screenshot(self):
-        self.driver.get_screenshot_as_file(f"ISHUR_{today}.png")
+        screenshot = f"ISHUR_{today}.png"
+        self.driver.get_screenshot_as_file(screenshot)
+        return screenshot
 
     def delete_file(self):
         file_name = f"ISHUR_{today}.png"
