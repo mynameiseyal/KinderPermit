@@ -1,6 +1,11 @@
+from datetime import datetime
+from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from consts import *
+
+path = Path(__file__).parent
+today = datetime.today().strftime('%d-%m-%Y')
 
 
 class Selenium:
@@ -30,5 +35,28 @@ class Selenium:
         self.driver.find_element_by_id(LOGIN_BUTTON).click()
         self.driver.set_page_load_timeout(20)
 
+    def sign_health_decleration(self):
+        # First decleration:
+        self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
+        self.driver.implicitly_wait(2)
+        self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
+        self.driver.set_page_load_timeout(20)
+        # Second decleration:
+        self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
+        self.driver.implicitly_wait(2)
+        self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
+        self.driver.set_page_load_timeout(20)
+
+    def save_screenshot(self):
+        self.driver.get_screenshot_as_file(f"ISHUR_{today}.png")
+
+    def delete_file(self):
+        file_name = f"ISHUR_{today}.png"
+        for filename in path.iterdir():
+            if filename.is_file():
+                if filename.name == file_name:
+                    filename.unlink()
+
     def quit(self):
+        self.delete_file()
         self.driver.quit()
