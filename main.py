@@ -22,7 +22,7 @@ if __name__ == '__main__':
     sel.launch_chrome()
     sel.go_to_decleration_page()
     sel.login(username=parent_username, password=parent_password)
-    sel.sign_health_decleration()
+    # sel.sign_health_decleration()
     screenshot = sel.save_screenshot()
     file = Path(__file__).parent / screenshot
     mail.send_mail_with_file(filename=file)
