@@ -1,8 +1,13 @@
 import time
 from datetime import datetime
 from pathlib import Path
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 from consts import *
 
 path = Path(__file__).parent
@@ -12,7 +17,7 @@ today = datetime.today().strftime('%d-%m-%Y')
 class Selenium:
     def __init__(self):
         options = Options()
-        options.add_argument("--headless")  # Runs Chrome in headless mode.
+        # options.add_argument("--headless")  # Runs Chrome in headless mode.
         options.add_argument('--no-sandbox')  # Bypass OS security model
         options.add_argument('--disable-gpu')  # applicable to windows os only
         options.add_argument('start-maximized')  #
@@ -37,14 +42,18 @@ class Selenium:
         time.sleep(7)
 
     def sign_health_decleration(self):
-        # First decleration:
-        self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
-        self.driver.implicitly_wait(2)
-        self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
-        self.driver.set_page_load_timeout(20)
+        # # First decleration:
+        # self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
+        # WebDriverWait(self.driver, 20).until(
+        #     EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
+        # # time.sleep(3)
+        # self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
+        # # time.sleep(3)
         # Second decleration:
         self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
-        self.driver.implicitly_wait(2)
+        WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, SECOND_DEC_APPROVE)))
+        # time.sleep(3)
         self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
         time.sleep(7)
 
