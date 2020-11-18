@@ -42,13 +42,11 @@ class Selenium:
         time.sleep(7)
 
     def sign_health_decleration(self):
-        # # First decleration:
-        # self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
-        # WebDriverWait(self.driver, 20).until(
-        #     EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
-        # # time.sleep(3)
-        # self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
-        # # time.sleep(3)
+        # First decleration:
+        self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
+        WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
+        self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
         # Second decleration:
         self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
         WebDriverWait(self.driver, 20).until(
