@@ -19,7 +19,7 @@ class EmailClient:
         self.password = password
         self.message = message or f"ISHUR_{today}"
         self.fromm = fromm or "me"
-        self.recipients = recipients
+        self.recipients = recipients.split(',')
         self.subject = subject or f"ISHURE_{today}"
         self.msg = MIMEMultipart()
         self.msg['Date'] = formatdate(localtime=True)
