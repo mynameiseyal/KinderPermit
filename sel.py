@@ -47,11 +47,11 @@ class Selenium:
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
         self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
+        time.sleep(5)
         # Second decleration:
         self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.XPATH, SECOND_DEC_APPROVE)))
-        # time.sleep(3)
         self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
         time.sleep(7)
 
