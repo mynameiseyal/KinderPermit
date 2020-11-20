@@ -47,7 +47,7 @@ class Selenium:
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
         self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
-        time.sleep(5)
+        time.sleep(7)
         self.driver.refresh()
         time.sleep(5)
         # Second decleration:
@@ -55,7 +55,10 @@ class Selenium:
         WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.XPATH, SECOND_DEC_APPROVE)))
         self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
+        time.sleep(7)
+        self.driver.refresh()
         time.sleep(10)
+
 
     def save_screenshot(self):
         screenshot = f"ISHUR_{today}.png"
