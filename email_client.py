@@ -17,10 +17,10 @@ class EmailClient:
                  fromm=None, subject=None, message=None, msg_type=None):
         self.username = username
         self.password = password
-        self.message = message or f"ISHUR_{today}"
+        self.message = message or f"Kindergarten approval {today}"
         self.fromm = fromm or "me"
         self.recipients = recipients.split(',')
-        self.subject = subject or f"ISHURE_{today}"
+        self.subject = subject or f"Kindergarten signed approval for {today}"
         self.msg = MIMEMultipart()
         self.msg['Date'] = formatdate(localtime=True)
         self.msg['Subject'] = self.subject
