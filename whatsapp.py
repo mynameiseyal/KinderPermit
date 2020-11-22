@@ -11,7 +11,6 @@ def send_message(message, message_url, to_whatsapp_numbers):
     for number in to_numbers:
         # replace this number with your own WhatsApp Messaging number
         to_whatsapp_number = f"whatsapp:+972{number}"
-        to_whatsapp_number = 'whatsapp:+972544931233'
         client.messages.create(body=message,
                                from_=from_whatsapp_number,
                                media_url=message_url,

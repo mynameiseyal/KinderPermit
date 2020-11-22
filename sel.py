@@ -5,6 +5,7 @@ from pathlib import Path
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -27,11 +28,11 @@ class Selenium:
 
     def launch_chrome(self):
         self.driver.get(BASE_URL)
-        self.driver.set_page_load_timeout(30)
+        time.sleep(10)
 
     def go_to_decleration_page(self):
         self.driver.find_element_by_xpath(DECLERATION_LINK).click()
-        self.driver.set_page_load_timeout(20)
+        time.sleep(10)
 
     def login(self, username, password):
         self.driver.find_element_by_id(BLOCKER).click()
@@ -39,21 +40,19 @@ class Selenium:
         self.driver.find_element_by_id(USERNAME).send_keys(username)
         self.driver.find_element_by_id(PASSWORD).send_keys(password)
         self.driver.find_element_by_id(LOGIN_BUTTON).click()
-        time.sleep(7)
+        time.sleep(10)
 
     def sign_health_decleration(self):
         # First decleration:
         self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
-        WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, FIRST_DEC_APPROVE)))
+        time.sleep(5)
         self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
         time.sleep(7)
         self.driver.refresh()
         time.sleep(5)
         # Second decleration:
         self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
-        WebDriverWait(self.driver, 20).until(
-            EC.presence_of_element_located((By.XPATH, SECOND_DEC_APPROVE)))
+        time.sleep(5)
         self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
         time.sleep(7)
         self.driver.refresh()
@@ -61,6 +60,7 @@ class Selenium:
 
 
     def save_screenshot(self):
+        self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
         screenshot = f"ISHUR_{today}.png"
         self.driver.refresh()
         time.sleep(5)
@@ -77,3 +77,4 @@ class Selenium:
     def quit(self):
         self.delete_file()
         self.driver.quit()
+        time.sleep(10)
