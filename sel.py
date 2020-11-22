@@ -27,7 +27,7 @@ class Selenium:
 
     def launch_chrome(self):
         self.driver.get(BASE_URL)
-        self.driver.implicitly_wait(3)
+        self.driver.set_page_load_timeout(30)
 
     def go_to_decleration_page(self):
         self.driver.find_element_by_xpath(DECLERATION_LINK).click()
