@@ -58,9 +58,15 @@ class Selenium:
         self.driver.refresh()
         time.sleep(10)
 
+    def go_out_and_in_to_decleration_page(self):
+        self.driver.get(GOOGLE_URL)
+        time.sleep(3)
+        self.driver.get(BASE_URL)
+        time.sleep(10)
+
 
     def save_screenshot(self):
-        self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
+        # self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
         screenshot = f"ISHUR_{today}.png"
         self.driver.refresh()
         time.sleep(5)

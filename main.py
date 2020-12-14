@@ -14,22 +14,23 @@ to_email = os.getenv("to_email")
 
 sel = Selenium()
 cloud = Cloudinary()
-mail = EmailClient(username=email_username, password=email_password,
-                   recipients=to_email)
+# mail = EmailClient(username=email_username, password=email_password,
+#                    recipients=to_email)
+mail = EmailClient(username='mynameiseyal2@gmail.com', password='eyii1626',
+                   recipients='mynameiseyal@gmail.com')
 
 
 if __name__ == '__main__':
     sel.launch_chrome()
     sel.go_to_decleration_page()
     sel.login(username=parent_username, password=parent_password)
+    # sel.login(username='5184588', password='Eyal1982')
     sel.sign_health_decleration()
-    sel.quit()
-    sel.launch_chrome()
-    sel.go_to_decleration_page()
-    sel.login(username=parent_username, password=parent_password)
+    sel.go_out_and_in_to_decleration_page()
     screenshot = sel.save_screenshot()
     file = Path(__file__).parent / screenshot
     mail.send_mail_with_file(filename=file)
     message_url = cloud.upload_files(file=screenshot)
     send_message(message=screenshot, message_url=message_url, to_whatsapp_numbers=to_whatsapp_numbers)
+    # send_message(message=screenshot, message_url=message_url, to_whatsapp_numbers='544931233,542087080')
     sel.quit()
