@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 
 from consts import *
 
@@ -24,7 +25,8 @@ class Selenium:
         options.add_argument('start-maximized')  #
         options.add_argument('disable-infobars')
         options.add_argument("--disable-extensions")
-        self.driver = webdriver.Chrome(chrome_options=options, executable_path=CHROMEDRIVER_PATH)
+        self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
+        # self.driver = webdriver.Chrome(chrome_options=options, executable_path=CHROMEDRIVER_PATH)
 
     def launch_chrome(self):
         self.driver.get(BASE_URL)
