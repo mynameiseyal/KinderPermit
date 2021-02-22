@@ -4,10 +4,6 @@ from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 from consts import *
@@ -33,7 +29,8 @@ class Selenium:
         time.sleep(10)
 
     def go_to_decleration_page(self):
-        self.driver.find_element_by_xpath(DECLERATION_LINK).click()
+        page_buttons = self.driver.find_elements_by_xpath(DECLERATION_PAGE_BUTTONS)
+        page_buttons[1].click()  # Second button, go to login page
         time.sleep(10)
 
     def login(self, username, password):
