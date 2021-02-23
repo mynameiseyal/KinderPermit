@@ -4,7 +4,7 @@ BASE_URL = "https://parents.education.gov.il/prhnet/parents/rights-obligations-r
 GOOGLE_URL = 'http://google.com'
 
 ### PAGE ELEMENTS ###
-DECLERATION_PAGE_BUTTONS = "//input[@type='button']"
+PAGE_BUTTONS = "//input[@type='button']"
 BLOCKER = "blocker"
 USERNAME = "HIN_USERID"
 PASSWORD = "Ecom_Password"

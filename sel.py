@@ -29,7 +29,7 @@ class Selenium:
         time.sleep(10)
 
     def go_to_decleration_page(self):
-        page_buttons = self.driver.find_elements_by_xpath(DECLERATION_PAGE_BUTTONS)
+        page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
         page_buttons[1].click()  # Second button, go to login page
         time.sleep(10)
 
@@ -42,17 +42,18 @@ class Selenium:
         time.sleep(10)
 
     def sign_health_decleration(self):
-        # First decleration:
-        self.driver.find_element_by_xpath(FIRST_DEC_EXPAND).click()
+        page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
+        page_buttons[0].click()  # First declaration sign
         time.sleep(5)
-        self.driver.find_element_by_xpath(FIRST_DEC_APPROVE).click()
+        reload_page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
+        reload_page_buttons[1].click()  # approval button
         time.sleep(7)
         self.driver.refresh()
         time.sleep(5)
-        # Second decleration:
-        self.driver.find_element_by_xpath(SECOND_DEC_EXPAND).click()
+        page_buttons[1].click()  # Second declaration sign
         time.sleep(5)
-        self.driver.find_element_by_xpath(SECOND_DEC_APPROVE).click()
+        reload_page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
+        reload_page_buttons[1].click()  # approval button
         time.sleep(7)
         self.driver.refresh()
         time.sleep(10)
@@ -62,7 +63,6 @@ class Selenium:
         time.sleep(3)
         self.driver.get(BASE_URL)
         time.sleep(10)
-
 
     def save_screenshot(self):
         # self.driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + Keys.HOME)
