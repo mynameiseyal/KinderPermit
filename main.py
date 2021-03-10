@@ -1,7 +1,7 @@
 from email_client import EmailClient
 from sel import Selenium
 from cloudinary_management import Cloudinary
-from whatsapp import send_message
+# from whatsapp import send_message
 import os
 from pathlib import Path
 
@@ -26,5 +26,5 @@ if __name__ == '__main__':
     file = Path(__file__).parent / screenshot
     mail.send_mail_with_file(filename=file)
     message_url = cloud.upload_files(file=screenshot)
-    send_message(message=screenshot, message_url=message_url, to_whatsapp_numbers=to_whatsapp_numbers)
+    # send_message(message=screenshot, message_url=message_url, to_whatsapp_numbers=to_whatsapp_numbers)
     sel.quit()

@@ -15,14 +15,13 @@ today = datetime.today().strftime('%d-%m-%Y')
 class Selenium:
     def __init__(self):
         options = Options()
-        # options.add_argument("--headless")  # Runs Chrome in headless mode.
+        options.add_argument("--headless")  # Runs Chrome in headless mode.
         options.add_argument('--no-sandbox')  # Bypass OS security model
         options.add_argument('--disable-gpu')  # applicable to windows os only
         options.add_argument('start-maximized')  #
         options.add_argument('disable-infobars')
         options.add_argument("--disable-extensions")
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
-        # self.driver = webdriver.Chrome(chrome_options=options, executable_path=CHROMEDRIVER_PATH)
 
     def launch_chrome(self):
         self.driver.get(BASE_URL)
@@ -50,7 +49,8 @@ class Selenium:
         time.sleep(7)
         self.driver.refresh()
         time.sleep(5)
-        page_buttons[1].click()  # Second declaration sign
+        page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
+        page_buttons[0].click()  # Second declaration sign
         time.sleep(5)
         reload_page_buttons = self.driver.find_elements_by_xpath(PAGE_BUTTONS)
         reload_page_buttons[1].click()  # approval button
